@@ -1,0 +1,144 @@
+class Categories:
+    def __init__(self, number, mean):
+        self.number = number
+        self.mean = mean
+        if number != "Bonus":
+            self.score = "-"
+        else:
+            self.score = "No"
+        self.space = "       "
+
+    def scorecard_space(self):
+        if len(str(self.score)) > int(1):
+            self.space = "      "
+        if self.score != "-" and self.score != "No":
+            int(self.score)
+        return self.space
+
+    def find_the_score(self, any_list, status):
+        if self.number == 1 or self.number == 2 or self.number == 3 or self.number == 4 or self.number == 5 or self.number == 6:
+            the_score = any_list.count(self.number) * self.number
+        elif self.number == "Bonus":
+            upper_total = 0
+            if Aces.score.isdigit():
+                upper_total = upper_total + int(Aces.score)
+            if Twos.score.isdigit():
+                upper_total = upper_total + int(Twos.score)
+            if Threes.score.isdigit():
+                upper_total = upper_total + int(Threes.score)
+            if Fours.score.isdigit():
+                upper_total = upper_total + int(Fours.score)
+            if Fives.score.isdigit():
+                upper_total = upper_total + int(Fives.score)
+            if Sixes.score.isdigit():
+                upper_total = upper_total + int(Sixes.score)
+            if upper_total >= 36:
+                the_score = "Yes"
+            else:
+                the_score = "No"
+        elif self.number == "Three of a Kind":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element) >= 3 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                    repeat = False
+        elif self.number == "Four of a Kind":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) >= 4:
+                    for number in any_list:
+                        the_score = the_score + number
+        elif self.number == "Full House":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                for another_element in any_list:
+                    if any_list.count(element) == 2 and repeat:
+                        if any_list.count(another_element) == 3:
+                            for number in any_list:
+                                the_score = the_score + number
+                                repeat = False
+        elif self.number == "Small Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(element + 3) >= 1 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                        repeat = False
+        elif self.number == "Large Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(element + 3) >= 1 and any_list.count(element + 4) >= 1 and repeat:
+                    if any_list.count(element + 4) >= 1:
+                        for number in any_list:
+                            the_score = the_score + number
+                            repeat = False
+        elif self.number == "Yahtzee":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) == 5:
+                    the_score = 50
+        elif self.number == "Chance":
+            the_score = 0
+            for element in any_list:
+                the_score = the_score + element
+        else:
+            print("Something went wrong.")
+            the_score = 0
+        if status == "set as score":
+            self.score = the_score
+            if self.number == 1:
+                print("You scored "+str(the_score)+" in Aces.")
+            elif self.number == 2:
+                print("You scored "+str(the_score)+" in Twos.")
+            elif self.number == 3:
+                print("You scored "+str(the_score)+" in Threes.")
+            elif self.number == 4:
+                print("You scored "+str(the_score)+" in Fours.")
+            elif self.number == 5:
+                print("You scored "+str(the_score)+" in Fives.")
+            elif self.number == 6:
+                print("You scored "+str(the_score)+" in Sixes.")
+            else:
+                print("You scored "+str(the_score)+" in "+str(self.number)+".")
+        return the_score
+
+
+Aces, Twos, Threes = Categories(1, 99), Categories(2, 22), Categories(3, 5),
+Fours, Fives, Sixes = Categories(4, 9), Categories(5, 32), Categories(6, 2)
+Bonus, ThreeKind, FourKind = Categories("Bonus", "No"), Categories("Three of a Kind", 21), Categories("Four of a Kind", 87)
+FullHouse, SStraight, LStraight = Categories("Full House", 6), Categories("Small Straight", 22), Categories("Large Straight", 30)
+Yahtzee, Chance = Categories("Yahtzee", 0), Categories("Chance", 77)
+Player_Aces, Player_Twos, Player_Threes = Categories(1, 86), Categories(2, 43), Categories(3, 33)
+Player_Fours, Player_Fives, Player_Sixes = Categories(4, 3), Categories(5, 5), Categories(6, 4)
+Player_Bonus, Player_ThreeKind, Player_FourKind = Categories("Bonus", 92), Categories("Three of a Kind", 88), Categories("Four of a Kind", 46)
+Player_Full_House, Player_SStraight = Categories("Full House", 7), Categories("Small Straight", 90)
+Player_LStraight, Player_Yahtzee, Player_Chance = Categories("Large Straight", 1), Categories("Yahtzee", 50), Categories("Chance", 88)
+
+
+def display_scorecards():
+    computer_scorecard = (" Computer's scorecard", " __________________ _______________ ","|     CATEGORY     |     SCORE     |","|__________________|_______________|", "| Aces:            |       "+str(Aces.score)+""+Aces.scorecard_space()+"|","| Twos:            |       "+str(Twos.score)+""+Twos.scorecard_space()+"|","| Threes:          |       "+str(Threes.score)+""+Threes.scorecard_space()+"|","| Fours:           |       "+str(Fours.score)+""+Fours.scorecard_space()+"|","| Fives:           |       "+str(Fives.score)+""+Fives.scorecard_space()+"|","| Sixes:           |       "+str(Sixes.score)+""+Sixes.scorecard_space()+"|","| Bonus?           |       "+str(Bonus.score)+""+Bonus.scorecard_space()+"|", "|__________________|_______________|","| Three of a Kind: |       "+str(ThreeKind.score)+""+ThreeKind.scorecard_space()+"|","| Four of a Kind:  |       "+str(FourKind.score)+""+FourKind.scorecard_space()+"|","| Full House:      |       "+str(FullHouse.score)+""+FullHouse.scorecard_space()+"|","| Small straight:  |       "+str(SStraight.score)+""+SStraight.scorecard_space()+"|","| Large Straight:  |       "+str(LStraight.score)+""+LStraight.scorecard_space()+"|","| Yahtzee:         |       "+str(Yahtzee.score)+""+Yahtzee.scorecard_space()+"|","| Chance:          |       "+str(Chance.score)+""+Chance.scorecard_space()+"|","|__________________|_______________|")
+    if mode == int(2):
+        player_scorecard = ("                "+name+"'s scorecard"," __________________ _______________ ","|     CATEGORY     |     SCORE     |","|__________________|_______________|", "| Aces:            |       "+str(Player_Aces.score)+""+Player_Aces.scorecard_space()+"|","| Twos:            |       "+str(Player_Twos.score)+""+Player_Twos.scorecard_space()+"|","| Threes:          |       "+str(Player_Threes.score)+""+Player_Threes.scorecard_space()+"|","| Fours:           |       "+str(Player_Fours.score)+""+Player_Fours.scorecard_space()+"|", "| Fives:           |       "+str(Player_Fives.score)+""+Player_Fives.scorecard_space()+"|","| Sixes:           |       "+str(Player_Sixes.score)+""+Player_Sixes.scorecard_space()+"|","| Bonus?           |       "+str(Player_Bonus.score)+""+Player_Bonus.scorecard_space()+"|", "|__________________|_______________|","| Three of a Kind: |       "+str(Player_ThreeKind.score)+""+Player_ThreeKind.scorecard_space()+"|","| Four of a Kind:  |       "+str(Player_FourKind.score)+""+Player_FourKind.scorecard_space()+"|","| Full House:      |       "+str(Player_Full_House.score)+""+Player_Full_House.scorecard_space()+"|", "| Small straight:  |       "+str(Player_SStraight.score)+""+Player_SStraight.scorecard_space()+"|", "| Large Straight:  |       "+str(Player_LStraight.score)+""+Player_LStraight.scorecard_space()+"|", "| Yahtzee:         |       "+str(Player_Yahtzee.score)+""+Player_Yahtzee.scorecard_space()+"|", "| Chance:          |       "+str(Player_Chance.score)+""+Player_Chance.scorecard_space()+"|","|__________________|_______________|")
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add], player_scorecard[add])
+            add = add + 1
+    else:
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add])
+            add = add + 1
+    return
+
+print("ROUND 1")
+name = "your_name"
+mode = int(2)
+
+display_scorecards()
