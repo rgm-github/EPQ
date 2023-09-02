@@ -1,0 +1,1370 @@
+# import statements
+
+import random
+import time
+
+
+# class
+class Categories:
+    def __init__(self, number, mean):
+        self.number = number
+        self.mean = int(mean)
+        if number == "Bonus":
+            self.score = "No"
+        elif number == "Total":
+            self.score = 0
+        else:
+            self.score = "-"
+        self.space = "       "
+
+    def reset(self):
+        if self.number == "Bonus":
+            self.score = "No"
+        elif self.number == "Total":
+            self.score = 0
+        else:
+            self.score = "-"
+        self.space = "       "
+
+    def scorecard(self):
+        if len(str(self.score)) == int(2):
+            self.space = "      "
+        elif len(str(self.score)) == int(3):
+            self.space = "     "
+        if self.score != "-" and self.score != "No" and self.score != "+35":
+            int(self.score)
+        return self.space
+
+    def find_the_score(self, any_list, status):
+        if (self.number == 1 or self.number == 2 or self.number == 3 or self.number == 4 or self.number == 5 or
+                self.number == 6):
+            the_score = any_list.count(self.number) * self.number
+        elif self.number == "Bonus" and status == "set as score, computer":
+            upper_total = 0
+            if Aces.score != "-":
+                upper_total = upper_total + int(Aces.score)
+            if Twos.score != "-":
+                upper_total = upper_total + int(Twos.score)
+            if Threes.score != "-":
+                upper_total = upper_total + int(Threes.score)
+            if Fours.score != "-":
+                upper_total = upper_total + int(Fours.score)
+            if Fives.score != "-":
+                upper_total = upper_total + int(Fives.score)
+            if Sixes.score != "-":
+                upper_total = upper_total + int(Sixes.score)
+            if upper_total >= 63:
+                the_score = "+35"
+            else:
+                the_score = "No"
+        elif self.number == "Bonus" and status == "set as score, player":
+            upper_total = 0
+            if Player_Aces.score != "-":
+                upper_total = upper_total + int(Player_Aces.score)
+            if Player_Twos.score != "-":
+                upper_total = upper_total + int(Player_Twos.score)
+            if Player_Threes.score != "-":
+                upper_total = upper_total + int(Player_Threes.score)
+            if Player_Fours.score != "-":
+                upper_total = upper_total + int(Player_Fours.score)
+            if Player_Fives.score != "-":
+                upper_total = upper_total + int(Player_Fives.score)
+            if Player_Sixes.score != "-":
+                upper_total = upper_total + int(Player_Sixes.score)
+            if upper_total >= 63:
+                the_score = "+35"
+            else:
+                the_score = "No"
+        elif self.number == "Three of a Kind":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element) >= 3 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                    repeat = False
+        elif self.number == "Four of a Kind":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element) >= 4 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                    repeat = False
+        elif self.number == "Full House":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                for another_element in any_list:
+                    if any_list.count(element) == 2 and repeat:
+                        if any_list.count(another_element) == 3:
+                            the_score = int(25)
+                            repeat = False
+        elif self.number == "Small Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if (any_list.count((element + 1)) >= 1 and any_list.count((element + 2)) >= 1 and
+                        any_list.count((element + 3)) >= 1 and repeat):
+                    the_score = int(30)
+                    repeat = False
+        elif self.number == "Large Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if (any_list.count((element + 1)) >= 1 and any_list.count((element + 2)) >= 1 and
+                        any_list.count((element + 3)) >= 1 and any_list.count((element + 4)) >= 1 and repeat):
+                    the_score = int(40)
+                    repeat = False
+        elif self.number == "Yahtzee":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) == 5:
+                    the_score = 50
+        elif self.number == "Chance":
+            the_score = 0
+            for element in any_list:
+                the_score = the_score + element
+        elif self.number == "Total" and status == "set as score, computer":
+            the_score = 0
+            if Aces.score != "-":
+                the_score = the_score + int(Aces.score)
+            if Twos.score != "-":
+                the_score = the_score + int(Twos.score)
+            if Threes.score != "-":
+                the_score = the_score + int(Threes.score)
+            if Fours.score != "-":
+                the_score = the_score + int(Fours.score)
+            if Fives.score != "-":
+                the_score = the_score + int(Fives.score)
+            if Sixes.score != "-":
+                the_score = the_score + int(Sixes.score)
+            if ThreeKind.score != "-":
+                the_score = the_score + int(ThreeKind.score)
+            if FourKind.score != "-":
+                the_score = the_score + int(FourKind.score)
+            if FullHouse.score != "-":
+                the_score = the_score + int(FullHouse.score)
+            if SStraight.score != "-":
+                the_score = the_score + int(SStraight.score)
+            if LStraight.score != "-":
+                the_score = the_score + int(LStraight.score)
+            if Yahtzee.score != "-":
+                the_score = the_score + int(Yahtzee.score)
+            if Chance.score != "-":
+                the_score = the_score + int(Chance.score)
+            if Bonus.score == "+35":
+                the_score = int(the_score) + int(35)
+        elif self.number == "Total" and status == "set as score, player":
+            the_score = 0
+            if Player_Aces.score != "-":
+                the_score = the_score + int(Player_Aces.score)
+            if Player_Twos.score != "-":
+                the_score = the_score + int(Player_Twos.score)
+            if Player_Threes.score != "-":
+                the_score = the_score + int(Player_Threes.score)
+            if Player_Fours.score != "-":
+                the_score = the_score + int(Player_Fours.score)
+            if Player_Fives.score != "-":
+                the_score = the_score + int(Player_Fives.score)
+            if Player_Sixes.score != "-":
+                the_score = the_score + int(Player_Sixes.score)
+            if Player_ThreeKind.score != "-":
+                the_score = the_score + int(Player_ThreeKind.score)
+            if Player_FourKind.score != "-":
+                the_score = the_score + int(Player_FourKind.score)
+            if Player_Full_House.score != "-":
+                the_score = the_score + int(Player_Full_House.score)
+            if Player_SStraight.score != "-":
+                the_score = the_score + int(Player_SStraight.score)
+            if Player_LStraight.score != "-":
+                the_score = the_score + int(Player_LStraight.score)
+            if Player_Yahtzee.score != "-":
+                the_score = the_score + int(Player_Yahtzee.score)
+            if Player_Chance.score != "-":
+                the_score = the_score + int(Player_Chance.score)
+            if Player_Bonus.score == "+35":
+                the_score = int(the_score) + int(35)
+        else:
+            print("Something went wrong.")
+            the_score = 0
+        if status == "set as score, player":
+            self.score = the_score
+            if self.number == 1:
+                print("You scored " + str(the_score) + " in Aces.")
+            elif self.number == 2:
+                print("You scored " + str(the_score) + " in Twos.")
+            elif self.number == 3:
+                print("You scored " + str(the_score) + " in Threes.")
+            elif self.number == 4:
+                print("You scored " + str(the_score) + " in Fours.")
+            elif self.number == 5:
+                print("You scored " + str(the_score) + " in Fives.")
+            elif self.number == 6:
+                print("You scored " + str(the_score) + " in Sixes.")
+            elif self.number == "Bonus":
+                if self.score == "+35":
+                    print("Congrats! You earned your bonus!")
+            elif self.number != "Total":
+                print("You scored " + str(the_score) + " in " + str(self.number) + ".")
+        elif status == "set as score, computer":
+            self.score = the_score
+            if method != 2:
+                if self.number == 1:
+                    print("I scored " + str(the_score) + " in Aces.")
+                elif self.number == 2:
+                    print("I scored " + str(the_score) + " in Twos.")
+                elif self.number == 3:
+                    print("I scored " + str(the_score) + " in Threes.")
+                elif self.number == 4:
+                    print("I scored " + str(the_score) + " in Fours.")
+                elif self.number == 5:
+                    print("I scored " + str(the_score) + " in Fives.")
+                elif self.number == 6:
+                    print("I scored " + str(the_score) + " in Sixes.")
+                elif self.number == "Bonus":
+                    if self.score == "+35":
+                        print("I earned my bonus!")
+                elif self.number != "Total":
+                    print("I scored " + str(the_score) + " in " + str(self.number) + ".")
+        elif status == "temp set":
+            if self.number == 1:
+                print(str(the_score) + " in Aces", end="")
+            elif self.number == 2:
+                print(str(the_score) + " in Twos", end="")
+            elif self.number == 3:
+                print(str(the_score) + " in Threes", end="")
+            elif self.number == 4:
+                print(str(the_score) + " in Fours", end="")
+            elif self.number == 5:
+                print(str(the_score) + " in Fives", end="")
+            elif self.number == 6:
+                print(str(the_score) + " in Sixes", end="")
+            else:
+                print(str(the_score) + " in " + str(self.number), end="")
+        return the_score
+
+
+Aces, Twos, Threes = Categories(1, 1), Categories(2, 1), Categories(3, 1)
+Fours, Fives, Sixes = Categories(4, 1), Categories(5, 1), Categories(6, 1)
+Bonus, ThreeKind, FourKind = Categories("Bonus", 1), Categories("Three of a Kind", 1), Categories("Four of a Kind", 1)
+FullHouse, SStraight = Categories("Full House", 1), Categories("Small Straight", 1)
+LStraight = Categories("Large Straight", 1)
+Yahtzee, Chance = Categories("Yahtzee", 1), Categories("Chance", 1)
+Player_Aces, Player_Twos, Player_Threes = Categories(1, 86), Categories(2, 43), Categories(3, 33)
+Player_Fours, Player_Fives, Player_Sixes = Categories(4, 3), Categories(5, 5), Categories(6, 4)
+Player_Bonus, Player_ThreeKind = Categories("Bonus", 92), Categories("Three of a Kind", 88)
+Player_FourKind = Categories("Four of a Kind", 46)
+Player_Full_House, Player_SStraight = Categories("Full House", 7), Categories("Small Straight", 90)
+Player_LStraight, Player_Yahtzee = Categories("Large Straight", 1), Categories("Yahtzee", 50)
+Player_Chance = Categories("Chance", 88)
+Player_Total, Total = Categories("Total", 1), Categories("Total", 1)
+
+# Define functions
+
+
+def roll_the_dice(whose_turn, how_many_dice):
+    d1, d2, d3, d4, d5 = "empty", "empty", "empty", "empty", "empty"
+    if method != 2:
+        print("Let's roll the dice!")
+    if whose_turn == "computer":
+        if dice_method == int(1):
+            one2six = True
+            while one2six and how_many_dice >= 1:
+                d1 = input("What is my first dice? ")
+                while d1.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d1 = input("What is my first dice? ")
+                d1 = int(d1)
+                if 6 >= d1 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 2:
+                d2 = input("What is my second dice? ")
+                while d2.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d2 = input("What is my second dice? ")
+                d2 = int(d2)
+                if 6 >= d2 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 3:
+                d3 = input("What is my third dice? ")
+                while d3.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d3 = input("What is my third dice? ")
+                d3 = int(d3)
+                if 6 >= d3 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 4:
+                d4 = input("What is my fourth dice? ")
+                while d4.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d4 = input("What is my fourth dice? ")
+                d4 = int(d4)
+                if 6 >= d4 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 5:
+                d5 = input("What is my fifth dice? ")
+                while d5.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d5 = input("What is my fifth dice? ")
+                d5 = int(d5)
+                if 6 >= d5 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+        else:
+            if how_many_dice >= 1:
+                d1 = random.randint(1, 6)
+            if how_many_dice >= 2:
+                d2 = random.randint(1, 6)
+            if how_many_dice >= 3:
+                d3 = random.randint(1, 6)
+            if how_many_dice >= 4:
+                d4 = random.randint(1, 6)
+            if how_many_dice >= 5:
+                d5 = random.randint(1, 6)
+        dice_list = []
+        if how_many_dice == 1:
+            dice_list = [d1]
+        if how_many_dice == 2:
+            dice_list = [d1, d2]
+        if how_many_dice == 3:
+            dice_list = [d1, d2, d3]
+        if how_many_dice == 4:
+            dice_list = [d1, d2, d3, d4]
+        if how_many_dice == 5:
+            dice_list = [d1, d2, d3, d4, d5]
+        if method != 2:
+            print("My dice are ", end="")
+            print(dice_list, end="")
+    else:
+        if dice_method == int(1):
+            one2six = True
+            while one2six and how_many_dice >= 1:
+                d1 = input("What is your first dice? ")
+                while d1.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d1 = input("What your first dice? ")
+                d1 = int(d1)
+                if 6 >= d1 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 2:
+                d2 = input("What your second dice? ")
+                while d2.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d2 = input("What your second dice? ")
+                d2 = int(d2)
+                if 6 >= d2 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 3:
+                d3 = input("What your third dice? ")
+                while d3.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d3 = input("What your third dice? ")
+                d3 = int(d3)
+                if 6 >= d3 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 4:
+                d4 = input("What your fourth dice? ")
+                while d4.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d4 = input("What your fourth dice? ")
+                d4 = int(d4)
+                if 6 >= d4 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six and how_many_dice >= 5:
+                d5 = input("What is your fifth dice? ")
+                while d5.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d5 = input("What is your fifth dice? ")
+                d5 = int(d5)
+                if 6 >= d5 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+        else:
+            if how_many_dice >= 1:
+                d1 = random.randint(1, 6)
+            if how_many_dice >= 2:
+                d2 = random.randint(1, 6)
+            if how_many_dice >= 3:
+                d3 = random.randint(1, 6)
+            if how_many_dice >= 4:
+                d4 = random.randint(1, 6)
+            if how_many_dice >= 5:
+                d5 = random.randint(1, 6)
+        dice_list = []
+        if how_many_dice == 1:
+            dice_list = [d1]
+        if how_many_dice == 2:
+            dice_list = [d1, d2]
+        if how_many_dice == 3:
+            dice_list = [d1, d2, d3]
+        if how_many_dice == 4:
+            dice_list = [d1, d2, d3, d4]
+        if how_many_dice == 5:
+            dice_list = [d1, d2, d3, d4, d5]
+        print("Your dice are ", end="")
+        print(dice_list, end="")
+    return dice_list
+
+
+def find_the_combinations(any_list, list_of_combinations):
+    for element in any_list:
+        for sub_set in list_of_combinations.copy():
+            new_sub_set = sub_set + [element]
+            new_sub_set.sort()
+            if new_sub_set not in list_of_combinations:
+                list_of_combinations.append(new_sub_set)
+    return
+
+
+def display_scorecards():
+    computer_scorecard = (" Computer's scorecard", " __________________ _______________ ",
+                          "|     CATEGORY     |     SCORE     |",
+                          "|__________________|_______________|",
+                          "| Aces:            |       "+str(Aces.score)+""+Aces.scorecard()+"|",
+                          "| Twos:            |       "+str(Twos.score)+""+Twos.scorecard()+"|",
+                          "| Threes:          |       "+str(Threes.score)+""+Threes.scorecard()+"|",
+                          "| Fours:           |       "+str(Fours.score)+""+Fours.scorecard()+"|",
+                          "| Fives:           |       "+str(Fives.score)+""+Fives.scorecard()+"|",
+                          "| Sixes:           |       "+str(Sixes.score)+""+Sixes.scorecard()+"|",
+                          "| Bonus?           |       "+str(Bonus.score)+""+Bonus.scorecard()+"|",
+                          "|__________________|_______________|",
+                          "| Three of a Kind: |       "+str(ThreeKind.score)+""+ThreeKind.scorecard()+"|",
+                          "| Four of a Kind:  |       "+str(FourKind.score)+""+FourKind.scorecard()+"|",
+                          "| Full House:      |       "+str(FullHouse.score)+""+FullHouse.scorecard()+"|",
+                          "| Small straight:  |       "+str(SStraight.score)+""+SStraight.scorecard()+"|",
+                          "| Large Straight:  |       "+str(LStraight.score)+""+LStraight.scorecard()+"|",
+                          "| Yahtzee:         |       "+str(Yahtzee.score)+""+Yahtzee.scorecard()+"|",
+                          "| Chance:          |       "+str(Chance.score)+""+Chance.scorecard()+"|",
+                          "|__________________|_______________|",
+                          "| Total:           |       "+str(Total.score)+""+Total.scorecard()+"|",
+                          "|__________________|_______________|")
+    if mode == int(2):
+        pl_scorecard = ("                "+name+"'s scorecard",
+                        " __________________ _______________ ",
+                        "|     CATEGORY     |     SCORE     |",
+                        "|__________________|_______________|",
+                        "| Aces:            |       "+str(Player_Aces.score)+""+Player_Aces.scorecard()+"|",
+                        "| Twos:            |       "+str(Player_Twos.score)+""+Player_Twos.scorecard()+"|",
+                        "| Threes:          |       "+str(Player_Threes.score)+""+Player_Threes.scorecard()+"|",
+                        "| Fours:           |       "+str(Player_Fours.score)+""+Player_Fours.scorecard()+"|",
+                        "| Fives:           |       "+str(Player_Fives.score)+""+Player_Fives.scorecard()+"|",
+                        "| Sixes:           |       "+str(Player_Sixes.score)+""+Player_Sixes.scorecard()+"|",
+                        "| Bonus?           |       "+str(Player_Bonus.score)+""+Player_Bonus.scorecard()+"|",
+                        "|__________________|_______________|",
+                        "| Three of a Kind: |       "+str(Player_ThreeKind.score)+""+Player_ThreeKind.scorecard()+"|",
+                        "| Four of a Kind:  |       "+str(Player_FourKind.score)+""+Player_FourKind.scorecard()+"|",
+                        "| Full House:      |       "+str(Player_Full_House.score)+""+Player_Full_House.scorecard()+"|",
+                        "| Small straight:  |       "+str(Player_SStraight.score)+""+Player_SStraight.scorecard()+"|",
+                        "| Large Straight:  |       "+str(Player_LStraight.score)+""+Player_LStraight.scorecard()+"|",
+                        "| Yahtzee:         |       "+str(Player_Yahtzee.score)+""+Player_Yahtzee.scorecard()+"|",
+                        "| Chance:          |       "+str(Player_Chance.score)+""+Player_Chance.scorecard()+"|",
+                        "|__________________|_______________|",
+                        "| Total:           |       "+str(Player_Total.score)+""+Player_Total.scorecard()+"|",
+                        "|__________________|_______________|")
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add], pl_scorecard[add])
+            add = add + 1
+    else:
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add])
+            add = add + 1
+    return
+
+
+def set_the_probabilities(the_dice_roll):
+    probability = 0
+    if len(the_dice_roll) == 1:
+        probability = (1/6)
+    elif len(the_dice_roll) == 0:
+        probability = 1
+    elif (len(the_dice_roll) == 2 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and
+          the_dice_roll.count(3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and
+          the_dice_roll.count(6) <= 1):
+        probability = (1 / 6) * (1 / 6) * 2
+    elif (len(the_dice_roll) == 3 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and
+          the_dice_roll.count(3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and
+          the_dice_roll.count(6) <= 1):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * 6
+    elif (len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and
+          the_dice_roll.count(3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and
+          the_dice_roll.count(6) <= 1):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 24
+    elif (len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and
+          the_dice_roll.count(3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and
+          the_dice_roll.count(6) <= 1):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 120
+    elif len(the_dice_roll) == 2:
+        probability = (1 / 6) * (1 / 6)
+    elif (len(the_dice_roll) == 3 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and
+          the_dice_roll.count(3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and
+          the_dice_roll.count(6) <= 2):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * 3
+    elif len(the_dice_roll) == 3:
+        probability = (1 / 6) * (1 / 6) * (1 / 6)
+    elif (len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and
+          the_dice_roll.count(3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and
+          the_dice_roll.count(6) <= 2):
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 2:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 6
+        else:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 10
+    elif (len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 3 and the_dice_roll.count(2) <= 3 and
+          the_dice_roll.count(3) <= 3 and the_dice_roll.count(4) <= 3 and the_dice_roll.count(5) <= 3 and
+          the_dice_roll.count(6) <= 3):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 4
+    elif len(the_dice_roll) == 4:
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6)
+    elif (len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and
+          the_dice_roll.count(3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and
+          the_dice_roll.count(6) <= 2):
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 3:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 23
+        else:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 60
+    elif (len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 3 and the_dice_roll.count(2) <= 3 and
+          the_dice_roll.count(3) <= 3 and the_dice_roll.count(4) <= 3 and the_dice_roll.count(5) <= 3 and
+          the_dice_roll.count(6) <= 3):
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 3:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 40
+        else:
+            probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 9
+    elif (len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 4 and the_dice_roll.count(2) <= 4 and
+          the_dice_roll.count(3) <= 4 and the_dice_roll.count(4) <= 4 and the_dice_roll.count(5) <= 4 and
+          the_dice_roll.count(6) <= 4):
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 5
+    elif len(the_dice_roll) == 5:
+        probability = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6)
+    else:
+        print("Something went wrong.")
+    return probability
+
+
+def add_the_means(value, category):
+    value = int(value)
+    if Aces.score == "-" and category != "Aces":
+        value = value + Aces.mean
+    if Twos.score == "-" and category != "Twos":
+        value = value + Twos.mean
+    if Threes.score == "-" and category != "Threes":
+        value = value + Threes.mean
+    if Fours.score == "-" and category != "Fours":
+        value = value + Fours.mean
+    if Fives.score == "-" and category != "Fives":
+        value = value + Fives.mean
+    if Sixes.score == "-" and category != "Sixes":
+        value = value + Sixes.mean
+    if ThreeKind.score == "-" and category != "Three of a Kind":
+        value = value + ThreeKind.mean
+    if FourKind.score == "-" and category != "Four of a Kind":
+        value = value + FourKind.mean
+    if FullHouse.score == "-" and category != "Full House":
+        value = value + FullHouse.mean
+    if SStraight.score == "-" and category != "Small Straight":
+        value = value + SStraight.mean
+    if LStraight.score == "-" and category != "Large Straight":
+        value = value + LStraight.mean
+    if Yahtzee.score == "-" and category != "Yahtzee":
+        value = value + Yahtzee.mean
+    if Chance.score == "-" and category != "Chance":
+        value = value + Chance.mean
+    return value
+
+
+def play_round(round_number):
+    if method != 2:
+        print("ROUND "+str(round_number))
+        display_scorecards()
+    if mode == 2:
+        print("You can go first.")
+        players_dice1 = roll_the_dice("player", 5)
+        print(".")
+        kept_dice = []
+        confirmed = False
+        while not confirmed:
+            kept_dice = []
+            d1_status = input("Would you like to keep the first dice, " + str(players_dice1[0]) + "? ")
+            if d1_status == "yes" or d1_status == "Yes" or d1_status == "y":
+                kept_dice.append(players_dice1[0])
+            d2_status = input("Would you like to keep the second dice, " + str(players_dice1[1]) + "? ")
+            if d2_status == "yes" or d2_status == "Yes" or d2_status == "y":
+                kept_dice.append(players_dice1[1])
+            d3_status = input("Would you like to keep the third dice, " + str(players_dice1[2]) + "? ")
+            if d3_status == "yes" or d3_status == "Yes" or d3_status == "y":
+                kept_dice.append(players_dice1[2])
+            d4_status = input("Would you like to keep the fourth dice, " + str(players_dice1[3]) + "? ")
+            if d4_status == "yes" or d4_status == "Yes" or d4_status == "y":
+                kept_dice.append(players_dice1[3])
+            d5_status = input("Would you like to keep the fifth dice, " + str(players_dice1[4]) + "? ")
+            if d5_status == "yes" or d5_status == "Yes" or d5_status == "y":
+                kept_dice.append(players_dice1[4])
+            if len(kept_dice) == 5:
+                confirm = input("Are you sure you would like to keep all the dice? ")
+            elif len(kept_dice) == 0:
+                confirm = input("Are you sure you would like to re-roll all the dice? ")
+            else:
+                confirm = input("Are you sure you would only like to keep " + str(kept_dice) + "? ")
+            if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                confirmed = True
+            else:
+                print("OK.")
+        open_dice = 5 - len(kept_dice)
+        if open_dice == 0:
+            all_keeps = False
+            players_dice2 = kept_dice
+        else:
+            players_dice2 = roll_the_dice("player", open_dice)
+            print(" and " + str(kept_dice) + ".")
+            all_keeps = True
+        confirmed = False
+        second_kept_dice = []
+        while not confirmed and all_keeps:
+            second_kept_dice = []
+            if len(players_dice2) >= 1:
+                d1_status = input("Would you like to keep the first dice, " + str(players_dice2[0]) + "? ")
+                if d1_status == "yes" or d1_status == "Yes" or d1_status == "y":
+                    second_kept_dice.append(players_dice2[0])
+            if len(players_dice2) >= 2:
+                d2_status = input("Would you like to keep the second dice, " + str(players_dice2[1]) + "? ")
+                if d2_status == "yes" or d2_status == "Yes" or d2_status == "y":
+                    second_kept_dice.append(players_dice2[1])
+            if len(players_dice2) >= 3:
+                d3_status = input("Would you like to keep the third dice, " + str(players_dice2[2]) + "? ")
+                if d3_status == "yes" or d3_status == "Yes" or d3_status == "y":
+                    second_kept_dice.append(players_dice2[2])
+            if len(players_dice2) >= 4:
+                d4_status = input("Would you like to keep the fourth dice, " + str(players_dice2[3]) + "? ")
+                if d4_status == "yes" or d4_status == "Yes" or d4_status == "y":
+                    second_kept_dice.append(players_dice2[3])
+            if len(players_dice2) >= 5:
+                d5_status = input("Would you like to keep the fifth dice, " + str(players_dice2[4]) + "? ")
+                if d5_status == "yes" or d5_status == "Yes" or d5_status == "y":
+                    second_kept_dice.append(players_dice2[4])
+            open_dice = 5 - len(players_dice2)
+            count = 0
+            if open_dice >= 5:
+                d1_status = input("Would you like to keep the first dice, " + str(kept_dice[count]) + "? ")
+                if d1_status == "yes" or d1_status == "Yes" or d1_status == "y":
+                    second_kept_dice.append(kept_dice[count])
+                count = count + 1
+            if open_dice >= 4:
+                d2_status = input("Would you like to keep the second dice, " + str(kept_dice[count]) + "? ")
+                if d2_status == "yes" or d2_status == "Yes" or d2_status == "y":
+                    second_kept_dice.append(kept_dice[count])
+                count = count + 1
+            if open_dice >= 3:
+                d3_status = input("Would you like to keep the third dice, " + str(kept_dice[count]) + "? ")
+                if d3_status == "yes" or d3_status == "Yes" or d3_status == "y":
+                    second_kept_dice.append(kept_dice[count])
+                count = count + 1
+            if open_dice >= 2:
+                d4_status = input("Would you like to keep the fourth dice, " + str(kept_dice[count]) + "? ")
+                if d4_status == "yes" or d4_status == "Yes" or d4_status == "y":
+                    second_kept_dice.append(kept_dice[count])
+                count = count + 1
+            if open_dice >= 1:
+                d5_status = input("Would you like to keep the fifth dice, " + str(kept_dice[count]) + "? ")
+                if d5_status == "yes" or d5_status == "Yes" or d5_status == "y":
+                    second_kept_dice.append(kept_dice[count])
+            if len(second_kept_dice) == 5:
+                confirm = input("Are you sure you would like to keep all the dice? ")
+            elif len(second_kept_dice) == 0:
+                confirm = input("Are you sure you would like to re-roll all the dice? ")
+            else:
+                confirm = input("Are you sure you would only like to keep " + str(second_kept_dice) + "? ")
+            if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                confirmed = True
+            else:
+                print("OK.")
+        if all_keeps:
+            open_dice = 5 - len(second_kept_dice)
+            players_dice3 = roll_the_dice("player", open_dice)
+            print(" and " + str(second_kept_dice) + ".")
+            final_player_dice = second_kept_dice + players_dice3
+        else:
+            final_player_dice = players_dice2
+        repeat = True
+        while repeat:
+            category_choice = input("What category would you like to score in? ")
+            if category_choice == "Aces" and Player_Aces.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Aces.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Aces.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Twos" and Player_Twos.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Twos.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Twos.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Threes" and Player_Threes.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Threes.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Threes.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Fours" and Player_Fours.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Fours.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Fours.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Fives" and Player_Fives.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Fives.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Fives.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Sixes" and Player_Sixes.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Sixes.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Sixes.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Three of a Kind" and Player_ThreeKind.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_ThreeKind.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_ThreeKind.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Four of a Kind" and Player_FourKind.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_FourKind.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_FourKind.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Full House" and Player_Full_House.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Full_House.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Full_House.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Small Straight" and Player_SStraight.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_SStraight.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_SStraight.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Large Straight" and Player_LStraight.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_LStraight.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_LStraight.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Yahtzee" and Player_Yahtzee.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Yahtzee.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Yahtzee.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            elif category_choice == "Chance" and Player_Chance.score == "-":
+                print("Are you sure you would like to score ", end="")
+                Player_Chance.find_the_score(final_player_dice, "temp set")
+                confirm = input("? ")
+                if confirm == "Yes" or confirm == "yes" or confirm == "y":
+                    repeat = False
+                    Player_Chance.find_the_score(final_player_dice, "set as score, player")
+                else:
+                    print("OK.")
+            else:
+                print("You did not enter a valid category. Make sure the category is open", end="")
+                print(" and typed exactly as it appears on the scorecard.")
+        if Player_Bonus.score == "No":
+            Player_Bonus.find_the_score(final_player_dice, "set as score, player")
+        Player_Total.find_the_score(final_player_dice, "set as score, player")
+        print("My turn.")
+    dice_list = roll_the_dice("computer", 5)
+    if method != 2:
+        print(".")
+    if (dice_list.count(1) == 5 or dice_list.count(2) == 5 or dice_list.count(3) == 5 or dice_list.count(4) == 5 or
+            dice_list.count(5) == 5 or dice_list.count(6) == 5):
+        print("YAHTZEE!")
+    roll_1_combinations = [[]]
+    print("I'm thinking", end="")
+    find_the_combinations(dice_list, roll_1_combinations)
+    numbers_list = [1, 2, 3, 4, 5, 6]
+    possible_rolls = [[]]
+    find_the_combinations(numbers_list, possible_rolls)
+    possibilities = []
+    first_prob_dict = {}
+    combo_dict = {}
+    for i in range(len(roll_1_combinations)):
+        sub_list = []
+        combo_dict[i] = roll_1_combinations[i]
+        available = 5 - len(roll_1_combinations[i])
+        o = int(0)
+        for every_list in possible_rolls:
+            if len(every_list) == available:
+                new_list = []
+                for each_number in every_list:
+                    new_list.append(each_number)
+                for each_number in roll_1_combinations[i]:
+                    new_list.append(each_number)
+                sub_list.append(new_list)
+                first_prob_dict[i, o] = set_the_probabilities(every_list)
+                o = o + 1
+        possibilities.append(sub_list)
+    print("\rI'm thinking .", end="")
+    roll_2_combinations = []
+    for i in range(len(possibilities)):
+        bigger_sub_list = []
+        for o in range(len(possibilities[i])):
+            sub_list = [[]]
+            find_the_combinations(possibilities[i][o], sub_list)
+            bigger_sub_list.append(sub_list)
+        roll_2_combinations.append(bigger_sub_list)
+    second_prob_dict = {}
+    final_possibilities = []
+    for i in range(len(roll_2_combinations)):
+        massive_sub_list = []
+        for o in range(len(roll_2_combinations[i])):
+            bigger_sub_list = []
+            for u in range(len(roll_2_combinations[i][o])):
+                sub_list = []
+                available = 5 - len(roll_2_combinations[i][o][u])
+                e = 0
+                for every_list in possible_rolls:
+                    if len(every_list) == available:
+                        new_list = every_list.copy()
+                        for each_number in roll_2_combinations[i][o][u]:
+                            new_list.append(each_number)
+                        sub_list.append(new_list)
+                        second_prob_dict[i, o, u, e] = set_the_probabilities(every_list)
+                        e = e + 1
+                bigger_sub_list.append(sub_list)
+            massive_sub_list.append(bigger_sub_list)
+        final_possibilities.append(massive_sub_list)
+    print("\rI'm thinking . .", end="")
+    gigantic_sub_dict = {}
+    for i in range(len(final_possibilities)):
+        massive_sub_value = 0
+        for o in range(len(final_possibilities[i])):
+            sub_dict = {}
+            for u in range(len(final_possibilities[i][o])):
+                sub_value = 0
+                for a in range(len(final_possibilities[i][o][u])):
+                    az = 0
+                    if Aces.score == "-":
+                        az = Aces.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(az, "Aces")
+                        az = az * second_prob_dict[i, o, u, a]
+                    bz = 0
+                    if Twos.score == "-":
+                        bz = Twos.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(bz, "Twos")
+                        bz = bz * second_prob_dict[i, o, u, a]
+                    cz = 0
+                    if Threes.score == "-":
+                        cz = Threes.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(cz, "Threes")
+                        cz = cz * second_prob_dict[i, o, u, a]
+                    dz = 0
+                    if Fours.score == "-":
+                        dz = Fours.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(dz, "Fours")
+                        dz = dz * second_prob_dict[i, o, u, a]
+                    ez = 0
+                    if Fives.score == "-":
+                        ez = Fives.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(ez, "Fives")
+                        ez = ez * second_prob_dict[i, o, u, a]
+                    fz = 0
+                    if Sixes.score == "-":
+                        fz = Sixes.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(fz, "Sixes")
+                        fz = fz * second_prob_dict[i, o, u, a]
+                    gz = 0
+                    if ThreeKind.score == "-":
+                        gz = ThreeKind.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(gz, "Three of a Kind")
+                        gz = gz * second_prob_dict[i, o, u, a]
+                    hz = 0
+                    if FourKind.score == "-":
+                        hz = FourKind.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(hz, "Four of a Kind")
+                        hz = hz * second_prob_dict[i, o, u, a]
+                    iz = 0
+                    if FullHouse.score == "-":
+                        iz = FullHouse.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(iz, "Full House")
+                        iz = iz * second_prob_dict[i, o, u, a]
+                    jz = 0
+                    if SStraight.score == "-":
+                        jz = SStraight.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(jz, "Small Straight")
+                        jz = jz * second_prob_dict[i, o, u, a]
+                    kz = 0
+                    if LStraight.score == "-":
+                        kz = LStraight.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(kz, "Large Straight")
+                        kz = kz * second_prob_dict[i, o, u, a]
+                    lz = 0
+                    if Yahtzee.score == "-":
+                        lz = Yahtzee.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(lz, "Yahtzee")
+                        lz = lz * second_prob_dict[i, o, u, a]
+                    mz = 0
+                    if Chance.score == "-":
+                        mz = Chance.find_the_score(final_possibilities[i][o][u][a], "no set")
+                        add_the_means(mz, "Chance")
+                        mz = mz * second_prob_dict[i, o, u, a]
+                    first_loop_value = az + bz + cz + dz + ez + fz + gz + hz + iz + jz + kz + lz + mz
+                    sub_value = sub_value + first_loop_value
+                sub_dict[i, o, u] = sub_value
+            sorted_list = sorted(sub_dict.items(), key=lambda x: x[1], reverse=True)
+            bigger_sub_value = sorted_list[0][1] * first_prob_dict[i, o]
+            massive_sub_value = massive_sub_value + bigger_sub_value
+        gigantic_sub_dict[i] = massive_sub_value
+    print("\rI'm thinking . . .", end="")
+    if method != 2:
+        time.sleep(2)
+    final_sorted_list = sorted(gigantic_sub_dict.items(), key=lambda x: x[1], reverse=True)
+    if method != 2:
+        print("\rI would like to keep ", end="")
+        print(combo_dict[final_sorted_list[0][0]], end="")
+        print(".")
+        time.sleep(5)
+    my_keeps = combo_dict[final_sorted_list[0][0]]
+    open_dice = 5 - len(my_keeps)
+    if open_dice == 0:
+        all_keeps = False
+        dice_list_2 = my_keeps
+    else:
+        second_dice_roll = roll_the_dice("computer", open_dice)
+        if method != 2:
+            print(" and " + str(my_keeps) + ".")
+        all_keeps = True
+        dice_list_2 = my_keeps + second_dice_roll
+        for z in range(1, 7):
+            if dice_list_2.count(z) == 5:
+                print("YAHTZEE!")
+    if all_keeps:
+        roll_1_combinations = [[]]
+        find_the_combinations(dice_list_2, roll_1_combinations)
+        numbers_list = [1, 2, 3, 4, 5, 6]
+        possible_rolls = [[]]
+        find_the_combinations(numbers_list, possible_rolls)
+        possibilities = []
+        first_prob_dict = {}
+        combo_dict = {}
+        for i in range(len(roll_1_combinations)):
+            sub_list = []
+            combo_dict[i] = roll_1_combinations[i]
+            available = 5 - len(roll_1_combinations[i])
+            o = int(0)
+            for every_list in possible_rolls:
+                if len(every_list) == available:
+                    new_list = []
+                    for each_number in every_list:
+                        new_list.append(each_number)
+                    for each_number in roll_1_combinations[i]:
+                        new_list.append(each_number)
+                    sub_list.append(new_list)
+                    first_prob_dict[i, o] = set_the_probabilities(every_list)
+                    o = o + 1
+            possibilities.append(sub_list)
+        sub_dict = {}
+        for i in range(len(possibilities)):
+            sub_value = 0
+            for o in range(len(possibilities[i])):
+                az = 0
+                if Aces.score == "-":
+                    az = Aces.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(az, "Aces")
+                    az = az * first_prob_dict[i, o]
+                bz = 0
+                if Twos.score == "-":
+                    bz = Twos.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(bz, "Twos")
+                    bz = bz * first_prob_dict[i, o]
+                cz = 0
+                if Threes.score == "-":
+                    cz = Threes.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(cz, "Threes")
+                    cz = cz * first_prob_dict[i, o]
+                dz = 0
+                if Fours.score == "-":
+                    dz = Fours.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(dz, "Fours")
+                    dz = dz * first_prob_dict[i, o]
+                ez = 0
+                if Fives.score == "-":
+                    ez = Fives.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(ez, "Fives")
+                    ez = ez * first_prob_dict[i, o]
+                fz = 0
+                if Sixes.score == "-":
+                    fz = Sixes.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(fz, "Sixes")
+                    fz = fz * first_prob_dict[i, o]
+                gz = 0
+                if ThreeKind.score == "-":
+                    gz = ThreeKind.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(gz, "Three of a Kind")
+                    gz = gz * first_prob_dict[i, o]
+                hz = 0
+                if FourKind.score == "-":
+                    hz = FourKind.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(hz, "Four of a Kind")
+                    hz = hz * first_prob_dict[i, o]
+                iz = 0
+                if FullHouse.score == "-":
+                    iz = FullHouse.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(iz, "Full House")
+                    iz = iz * first_prob_dict[i, o]
+                jz = 0
+                if SStraight.score == "-":
+                    jz = SStraight.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(jz, "Small Straight")
+                    jz = jz * first_prob_dict[i, o]
+                kz = 0
+                if LStraight.score == "-":
+                    kz = LStraight.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(kz, "Large Straight")
+                    kz = kz * first_prob_dict[i, o]
+                lz = 0
+                if Yahtzee.score == "-":
+                    lz = Yahtzee.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(lz, "Yahtzee")
+                    lz = lz * first_prob_dict[i, o]
+                mz = 0
+                if Chance.score == "-":
+                    mz = Chance.find_the_score(possibilities[i][o], "no set")
+                    add_the_means(mz, "Chance")
+                    mz = mz * first_prob_dict[i, o]
+                first_loop_value = az + bz + cz + dz + ez + fz + gz + hz + iz + jz + kz + lz + mz
+                sub_value = sub_value + first_loop_value
+            sub_dict[i] = sub_value
+        final_sorted_list = sorted(sub_dict.items(), key=lambda x: x[1], reverse=True)
+        if method != 2:
+            time.sleep(2)
+            print("I would like to keep ", end="")
+            print(combo_dict[final_sorted_list[0][0]], end="")
+            print(".")
+            time.sleep(2)
+        open_dice = 5 - len(combo_dict[final_sorted_list[0][0]])
+        if open_dice == 0:
+            my_final_dice = combo_dict[final_sorted_list[0][0]]
+        else:
+            third_dice_roll = roll_the_dice("computer", open_dice)
+            if method != 2:
+                print(" and "+str(combo_dict[final_sorted_list[0][0]])+".")
+            my_final_dice = third_dice_roll + combo_dict[final_sorted_list[0][0]]
+            for z in range(1, 7):
+                if my_final_dice.count(z) == 5:
+                    print("YAHTZEE!")
+    else:
+        my_final_dice = dice_list_2
+    if method != 2:
+        time.sleep(5)
+    category_dict = {}
+    if Aces.score == "-":
+        category_dict[Aces] = add_the_means(Aces.find_the_score(my_final_dice, "no set"), "Aces")
+    if Twos.score == "-":
+        category_dict[Twos] = add_the_means(Twos.find_the_score(my_final_dice, "no set"), "Twos")
+    if Threes.score == "-":
+        category_dict[Threes] = add_the_means(Threes.find_the_score(my_final_dice, "no set"), "Threes")
+    if Fours.score == "-":
+        category_dict[Fours] = add_the_means(Fours.find_the_score(my_final_dice, "no set"), "Fours")
+    if Fives.score == "-":
+        category_dict[Fives] = add_the_means(Fives.find_the_score(my_final_dice, "no set"), "Fives")
+    if Sixes.score == "-":
+        category_dict[Sixes] = add_the_means(Sixes.find_the_score(my_final_dice, "no set"), "Sixes")
+    if ThreeKind.score == "-":
+        category_dict[ThreeKind] = add_the_means(ThreeKind.find_the_score(my_final_dice, "no set"), "Three of a Kind")
+    if FourKind.score == "-":
+        category_dict[FourKind] = add_the_means(FourKind.find_the_score(my_final_dice, "no set"), "Four of a Kind")
+    if FullHouse.score == "-":
+        category_dict[FullHouse] = add_the_means(FullHouse.find_the_score(my_final_dice, "no set"), "Full House")
+    if SStraight.score == "-":
+        category_dict[SStraight] = add_the_means(SStraight.find_the_score(my_final_dice, "no set"), "Small Straight")
+    if LStraight.score == "-":
+        category_dict[LStraight] = add_the_means(LStraight.find_the_score(my_final_dice, "no set"), "Large Straight")
+    if Yahtzee.score == "-":
+        category_dict[Yahtzee] = add_the_means(Yahtzee.find_the_score(my_final_dice, "no set"), "Yahtzee")
+    if Chance.score == "-":
+        category_dict[Chance] = add_the_means(Chance.find_the_score(my_final_dice, "no set"), "Chance")
+    sorted_list = sorted(category_dict.items(), key=lambda x: x[1], reverse=True)
+    sorted_list[0][0].find_the_score(my_final_dice, "set as score, computer")
+    if Bonus.score == "No":
+        Bonus.find_the_score(my_final_dice, "set as score, computer")
+    Total.find_the_score(my_final_dice, "set as score, computer")
+
+
+print("Hi! I can play Yahtzee! Let's play a game!")
+want_to_play_again = True
+time.sleep(2)
+while want_to_play_again:
+    Aces.reset()
+    Twos.reset()
+    Threes.reset()
+    Fours.reset()
+    Fives.reset()
+    Sixes.reset()
+    Bonus.reset()
+    ThreeKind.reset()
+    FourKind.reset()
+    FullHouse.reset()
+    SStraight.reset()
+    LStraight.reset()
+    Yahtzee.reset()
+    Chance.reset()
+    Player_Aces.reset()
+    Player_Twos.reset()
+    Player_Threes.reset()
+    Player_Fours.reset()
+    Player_Fives.reset()
+    Player_Sixes.reset()
+    Player_Bonus.reset()
+    Player_ThreeKind.reset()
+    Player_FourKind.reset()
+    Player_Full_House.reset()
+    Player_SStraight.reset()
+    Player_LStraight.reset()
+    Player_Yahtzee.reset()
+    Player_Chance.reset()
+    mode, method, number_of_games, dice_method, name = "empty", "empty", 1, "empty", "empty"
+    skip = True
+    while mode != int(1) and mode != int(2) and mode != "classic settings" and mode != "demo":
+        mode = input("""What game mode would you like?
+    1. Computer only play
+    2. Computer Vs Player
+Enter the number: """)
+        if mode.isdigit():
+            mode = int(mode)
+        if mode == int(1):
+            while method != int(1) and method != int(2):
+                method = input("""Would you like:
+    1. Slow Walkthrough
+    2. End scores
+Enter the number: """)
+                if method.isdigit():
+                    method = int(method)
+                if method == int(2):
+                    number_of_games = input("How many end scores would you like? ")
+                    while number_of_games.isdigit() is False:
+                        print("You did not enter a valid number.")
+                        number_of_games = input("How many end scores would you like? ")
+                    number_of_games = int(number_of_games)
+                elif method != int(1) and method != int(2):
+                    print("You did not enter a valid number.")
+        elif mode == int(2) or mode == "classic settings":
+            name = input("What is the player name? ")
+            if mode == "classic settings":
+                skip = False
+                mode = int(2)
+                dice_method = int(2)
+        elif mode == "demo":
+            skip = False
+            mode = int(1)
+            method = int(1)
+            dice_method = int(1)
+        else:
+            print("You did not enter a valid number.")
+    while dice_method != int(1) and dice_method != int(2) and skip:
+        dice_method = input("""Who will roll the dice?
+    1. Input the dice
+    2. Generate random dice
+Enter the number: """)
+        if dice_method.isdigit():
+            dice_method = int(dice_method)
+        if dice_method != int(1) and dice_method != int(2):
+            print("You did not enter a valid number.")
+    print("OK. Let's play Yahtzee!")
+    end_scores = []
+    who_won = "draw"
+    for h in range(number_of_games):
+        Aces.reset()
+        Twos.reset()
+        Threes.reset()
+        Fours.reset()
+        Fives.reset()
+        Sixes.reset()
+        Bonus.reset()
+        ThreeKind.reset()
+        FourKind.reset()
+        FullHouse.reset()
+        SStraight.reset()
+        LStraight.reset()
+        Yahtzee.reset()
+        Chance.reset()
+        Player_Aces.reset()
+        Player_Twos.reset()
+        Player_Threes.reset()
+        Player_Fours.reset()
+        Player_Fives.reset()
+        Player_Sixes.reset()
+        Player_Bonus.reset()
+        Player_ThreeKind.reset()
+        Player_FourKind.reset()
+        Player_Full_House.reset()
+        Player_SStraight.reset()
+        Player_LStraight.reset()
+        Player_Yahtzee.reset()
+        Player_Chance.reset()
+        if method != 2:
+            time.sleep(2)
+        play_round(1)
+        if method != 2:
+            time.sleep(2)
+        play_round(2)
+        if method != 2:
+            time.sleep(2)
+        play_round(3)
+        if method != 2:
+            time.sleep(2)
+        play_round(4)
+        if method != 2:
+            time.sleep(2)
+        play_round(5)
+        if method != 2:
+            time.sleep(2)
+        play_round(6)
+        if method != 2:
+            time.sleep(2)
+        play_round(7)
+        if method != 2:
+            time.sleep(2)
+        play_round(8)
+        if method != 2:
+            time.sleep(2)
+        play_round(9)
+        if method != 2:
+            time.sleep(2)
+        play_round(10)
+        if method != 2:
+            time.sleep(2)
+        play_round(11)
+        if method != 2:
+            time.sleep(2)
+        play_round(12)
+        if method != 2:
+            time.sleep(2)
+        play_round(13)
+        if method != 2:
+            time.sleep(2)
+        if method != 2:
+            print("The results are in!")
+            display_scorecards()
+            time.sleep(2)
+            if mode == 2:
+                if Player_Total.score > Total.score:
+                    margin = int(Player_Total.score) - int(Total.score)
+                    print("Congrats "+name+", you won by "+str(margin)+" points! Good game!")
+                    who_won = "player"
+                elif Total.score > Player_Total.score:
+                    margin = int(Total.score) - int(Player_Total.score)
+                    print("I won by "+str(margin)+" points. Don't worry "+name+",", end="")
+                    print(" even the best can be defeated by a master!")
+                    who_won = "computer"
+                else:
+                    print("A draw! What are the odds?")
+                    who_won = "draw"
+            else:
+                print("Game over. I scored "+str(Total.score)+" points.")
+                who_won = "solo game"
+            time.sleep(2)
+        else:
+            print("\rGame "+str(h + 1)+": "+str(Total.score)+" points")
+            who_won = "solo game"
+            end_scores.append(Total.score)
+    if mode == 1 and method == 2:
+        mean_average = 0
+        for any_score in end_scores:
+            mean_average = mean_average + int(any_score)
+        mean_average = mean_average/len(end_scores)
+        print("The average score was "+str(mean_average)+".")
+    confirm_play_again = input("Would you like to play again? ")
+    if confirm_play_again == "no" or confirm_play_again == "n" or confirm_play_again == "No":
+        print("OK! Thanks for playing!")
+        want_to_play_again = False
+    else:
+        if who_won == "computer":
+            print("Out for revenge? Bring it on!")
+        elif who_won == "player":
+            print("Sure! But you know what they say, quit while you're ahead!")
+        elif who_won == "solo game":
+            print("Great! I'm always game.")
+        else:
+            print("Yes! I demand satisfaction.")
+    if method != 2:
+        time.sleep(2)
