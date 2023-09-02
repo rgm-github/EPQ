@@ -1,0 +1,364 @@
+def find_the_combinations(any_list, list_of_combinations):
+    for element in any_list:
+        for sub_set in list_of_combinations.copy():
+            new_sub_set = sub_set + [element]
+            new_sub_set.sort()
+            if new_sub_set not in list_of_combinations:
+                list_of_combinations.append(new_sub_set)
+    return
+
+
+def set_the_probabilities(the_dice_roll):
+    probabilitys = 0
+    if len(the_dice_roll) == 1:
+        probabilitys = (1/6)
+    elif len(the_dice_roll) == 0:
+        probabilitys = 1
+    elif len(the_dice_roll) == 2 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and the_dice_roll.count(
+            3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and the_dice_roll.count(6) <= 1:
+        probabilitys = (1 / 6) * (1 / 6) * 2
+    elif len(the_dice_roll) == 3 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and the_dice_roll.count(
+            3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and the_dice_roll.count(6) <= 1:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * 6
+    elif len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and the_dice_roll.count(
+            3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and the_dice_roll.count(6) <= 1:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 24
+    elif len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 1 and the_dice_roll.count(2) <= 1 and the_dice_roll.count(
+            3) <= 1 and the_dice_roll.count(4) <= 1 and the_dice_roll.count(5) <= 1 and the_dice_roll.count(6) <= 1:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 120
+    elif len(the_dice_roll) == 2:
+        probabilitys = (1 / 6) * (1 / 6)
+    elif len(the_dice_roll) == 3 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and the_dice_roll.count(
+            3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and the_dice_roll.count(6) <= 2:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * 3
+    elif len(the_dice_roll) == 3:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6)
+    elif len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and the_dice_roll.count(
+            3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and the_dice_roll.count(6) <= 2:
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 2:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 6
+        else:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 10
+    elif len(the_dice_roll) == 4 and the_dice_roll.count(1) <= 3 and the_dice_roll.count(2) <= 3 and the_dice_roll.count(
+            3) <= 3 and the_dice_roll.count(4) <= 3 and the_dice_roll.count(5) <= 3 and the_dice_roll.count(6) <= 3:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 4
+    elif len(the_dice_roll) == 4:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6)
+    elif len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 2 and the_dice_roll.count(2) <= 2 and the_dice_roll.count(
+            3) <= 2 and the_dice_roll.count(4) <= 2 and the_dice_roll.count(5) <= 2 and the_dice_roll.count(6) <= 2:
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 3:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 23
+        else:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 60
+    elif len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 3 and the_dice_roll.count(2) <= 3 and the_dice_roll.count(
+            3) <= 3 and the_dice_roll.count(4) <= 3 and the_dice_roll.count(5) <= 3 and the_dice_roll.count(6) <= 3:
+        a_list = []
+        for element in the_dice_roll:
+            if element not in a_list:
+                a_list.append(element)
+        if len(a_list) == 3:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 40
+        else:
+            probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 9
+    elif len(the_dice_roll) == 5 and the_dice_roll.count(1) <= 4 and the_dice_roll.count(2) <= 4 and the_dice_roll.count(
+            3) <= 4 and the_dice_roll.count(4) <= 4 and the_dice_roll.count(5) <= 4 and the_dice_roll.count(6) <= 4:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * 5
+    elif len(the_dice_roll) == 5:
+        probabilitys = (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6) * (1 / 6)
+    else:
+        print("Something went wrong.")
+    return probabilitys
+# define classes
+
+
+class Categories:
+    def __init__(self, number, mean):
+        self.number = number
+        self.mean = int(mean)
+        if number != "Bonus":
+            self.score = "-"
+        else:
+            self.score = "No"
+        self.space = "       "
+
+    def scorecard_space(self):
+        if len(str(self.score)) > int(1):
+            self.space = "      "
+        if self.score != "-" and self.score != "No" and self.score != "Yes":
+            int(self.score)
+        return self.space
+
+    def find_the_score(self, any_list, status):
+        if self.number == 1 or self.number == 2 or self.number == 3 or self.number == 4 or self.number == 5 or self.number == 6:
+            the_score = any_list.count(self.number) * self.number
+        elif self.number == "Bonus":
+            upper_total = 0
+            if Aces.score.isdigit():
+                upper_total = upper_total + int(Aces.score)
+            if Twos.score.isdigit():
+                upper_total = upper_total + int(Twos.score)
+            if Threes.score.isdigit():
+                upper_total = upper_total + int(Threes.score)
+            if Fours.score.isdigit():
+                upper_total = upper_total + int(Fours.score)
+            if Fives.score.isdigit():
+                upper_total = upper_total + int(Fives.score)
+            if Sixes.score.isdigit():
+                upper_total = upper_total + int(Sixes.score)
+            if upper_total >= 36:
+                the_score = "Yes"
+            else:
+                the_score = "No"
+        elif self.number == "Three of a Kind":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element) >= 3 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                    repeat = False
+        elif self.number == "Four of a Kind":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) >= 4:
+                    for number in any_list:
+                        the_score = the_score + number
+        elif self.number == "Full House":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                for another_element in any_list:
+                    if any_list.count(element) == 2 and repeat:
+                        if any_list.count(another_element) == 3:
+                            for number in any_list:
+                                the_score = the_score + number
+                                repeat = False
+        elif self.number == "Small Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(
+                        element + 3) >= 1 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                        repeat = False
+        elif self.number == "Large Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(
+                        element + 3) >= 1 and any_list.count(element + 4) >= 1 and repeat:
+                    if any_list.count(element + 4) >= 1:
+                        for number in any_list:
+                            the_score = the_score + number
+                            repeat = False
+        elif self.number == "Yahtzee":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) == 5:
+                    the_score = 50
+        elif self.number == "Chance":
+            the_score = 0
+            for element in any_list:
+                the_score = the_score + element
+        else:
+            print("Something went wrong.")
+            the_score = 0
+        if status == "set as score":
+            self.score = the_score
+            if self.number == 1:
+                print("You scored " + str(the_score) + " in Aces.")
+            elif self.number == 2:
+                print("You scored " + str(the_score) + " in Twos.")
+            elif self.number == 3:
+                print("You scored " + str(the_score) + " in Threes.")
+            elif self.number == 4:
+                print("You scored " + str(the_score) + " in Fours.")
+            elif self.number == 5:
+                print("You scored " + str(the_score) + " in Fives.")
+            elif self.number == 6:
+                print("You scored " + str(the_score) + " in Sixes.")
+            else:
+                print("You scored " + str(the_score) + " in " + str(self.number) + ".")
+        return the_score
+
+
+Aces, Twos, Threes = Categories(1, 1), Categories(2, 1), Categories(3, 1)
+Fours, Fives, Sixes = Categories(4, 1), Categories(5, 1), Categories(6, 1)
+Bonus, ThreeKind, FourKind = Categories("Bonus", 1), Categories("Three of a Kind", 1), Categories("Four of a Kind",
+                                                                                                      1)
+FullHouse, SStraight, LStraight = Categories("Full House", 1), Categories("Small Straight", 1), Categories(
+    "Large Straight", 1)
+Yahtzee, Chance = Categories("Yahtzee", 1), Categories("Chance", 1)
+Player_Aces, Player_Twos, Player_Threes = Categories(1, 86), Categories(2, 43), Categories(3, 33)
+Player_Fours, Player_Fives, Player_Sixes = Categories(4, 3), Categories(5, 5), Categories(6, 4)
+Player_Bonus, Player_ThreeKind, Player_FourKind = Categories("Bonus", 92), Categories("Three of a Kind",
+                                                                                      88), Categories("Four of a Kind",
+                                                                                                      46)
+Player_Full_House, Player_SStraight = Categories("Full House", 7), Categories("Small Straight", 90)
+Player_LStraight, Player_Yahtzee, Player_Chance = Categories("Large Straight", 1), Categories("Yahtzee",
+                                                                                              50), Categories("Chance",
+                                                                                                              88)
+
+dice_list = [5, 4, 3, 2, 1]
+
+roll_1_combinations = [[]]
+find_the_combinations(dice_list, roll_1_combinations)
+# STEP ONE COMPLETE
+
+numbers_list = [1, 2, 3, 4, 5, 6]
+possible_rolls = [[]]
+find_the_combinations(numbers_list, possible_rolls)
+
+possibilities = []
+first_prob_dict = {}
+combo_dict = {}
+for i in range(len(roll_1_combinations)):
+    sub_list = []
+    combo_dict[i] = roll_1_combinations[i]
+    available = 5 - len(roll_1_combinations[i])
+    o = int(0)
+    for every_list in possible_rolls:
+        if len(every_list) == available:
+            new_list = []
+            for each_number in every_list:
+                new_list.append(each_number)
+            for each_number in roll_1_combinations[i]:
+                new_list.append(each_number)
+            sub_list.append(new_list)
+            first_prob_dict[i, o] = set_the_probabilities(every_list)
+            o = o + 1
+    possibilities.append(sub_list)
+# STEP TWO COMPLETE
+
+roll_2_combinations = []
+for i in range(len(possibilities)):
+    bigger_sub_list = []
+    for o in range(len(possibilities[i])):
+        sub_list = [[]]
+        find_the_combinations(possibilities[i][o], sub_list)
+        bigger_sub_list.append(sub_list)
+    roll_2_combinations.append(bigger_sub_list)
+# STEP THREE COMPLETE
+
+second_prob_dict = {}
+final_possibilities = []
+for i in range(len(roll_2_combinations)):
+    massive_sub_list = []
+    for o in range(len(roll_2_combinations[i])):
+        bigger_sub_list = []
+        for u in range(len(roll_2_combinations[i][o])):
+            sub_list = []
+            available = 5 - len(roll_2_combinations[i][o][u])
+            e = 0
+            for every_list in possible_rolls:
+                if len(every_list) == available:
+                    new_list = every_list.copy()
+                    for each_number in roll_2_combinations[i][o][u]:
+                        new_list.append(each_number)
+                    sub_list.append(new_list)
+                    second_prob_dict[i, o, u, e] = set_the_probabilities(every_list)
+                    e = e + 1
+            bigger_sub_list.append(sub_list)
+        massive_sub_list.append(bigger_sub_list)
+    final_possibilities.append(massive_sub_list)
+# STEP FOUR COMPLETE
+
+
+def add_the_means(value, category):
+    value = int(value)
+    if Aces.score == "-" and category != "Aces":
+        value = value + Aces.mean
+    if Twos.score == "-" and category != "Twos":
+        value = value + Twos.mean
+    if Threes.score == "-" and category != "Threes":
+        value = value + Threes.mean
+    if Fours.score == "-" and category != "Fours":
+        value = value + Fours.mean
+    if Fives.score == "-" and category != "Fives":
+        value = value + Fives.mean
+    if Sixes.score == "-" and category != "Sixes":
+        value = value + Sixes.mean
+    if ThreeKind.score == "-" and category != "Three of a Kind":
+        value = value + ThreeKind.mean
+    if FourKind.score == "-" and category != "Four of a Kind":
+        value = value + FourKind.mean
+    if FullHouse.score == "-" and category != "Full House":
+        value = value + FullHouse.mean
+    if SStraight.score == "-" and category != "Small Straight":
+        value = value + SStraight.mean
+    if LStraight.score == "-" and category != "Large Straight":
+        value = value + LStraight.mean
+    if Yahtzee.score == "-" and category != "Yahtzee":
+        value = value + Yahtzee.mean
+    if Chance.score == "-" and category != "Chance":
+        value = value + Chance.mean
+    return value
+
+
+gigantic_sub_dict = {}
+for i in range(len(final_possibilities)):
+    massive_sub_value = 0
+    for o in range(len(final_possibilities[i])):
+        sub_dict = {}
+        for u in range(len(final_possibilities[i][o])):
+            sub_value = 0
+            for a in range(len(final_possibilities[i][o][u])):
+                az = Aces.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(az, "Aces")
+                az = az * second_prob_dict[i, o, u, a]
+                bz = Twos.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(bz, "Twos")
+                bz = bz * second_prob_dict[i, o, u, a]
+                cz = Threes.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(cz, "Threes")
+                cz = cz * second_prob_dict[i, o, u, a]
+                dz = Fours.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(dz, "Fours")
+                dz = dz * second_prob_dict[i, o, u, a]
+                ez = Fives.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(ez, "Fives")
+                ez = ez * second_prob_dict[i, o, u, a]
+                fz = Sixes.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(fz, "Sixes")
+                fz = fz * second_prob_dict[i, o, u, a]
+                gz = ThreeKind.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(gz, "Three of a Kind")
+                gz = gz * second_prob_dict[i, o, u, a]
+                hz = FourKind.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(hz, "Four of a Kind")
+                hz = hz * second_prob_dict[i, o, u, a]
+                iz = FullHouse.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(iz, "Full House")
+                iz = iz * second_prob_dict[i, o, u, a]
+                jz = SStraight.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(jz, "Small Straight")
+                jz = jz * second_prob_dict[i, o, u, a]
+                kz = LStraight.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(kz, "Large Straight")
+                kz = kz * second_prob_dict[i, o, u, a]
+                lz = Yahtzee.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(lz, "Yahtzee")
+                lz = lz * second_prob_dict[i, o, u, a]
+                mz = Chance.find_the_score(final_possibilities[i][o][u][a], "no set")
+                add_the_means(mz, "Chance")
+                mz = mz * second_prob_dict[i, o, u, a]
+                first_loop_value = az + bz + cz + dz + ez + fz + gz + hz + iz + jz + kz + lz + mz
+                sub_value = sub_value + first_loop_value
+            sub_dict[i, o, u] = sub_value
+        sorted_list = sorted(sub_dict.items(), key=lambda x: x[1], reverse=True)
+        bigger_sub_value = sorted_list[0][1] * first_prob_dict[i, o]
+        massive_sub_value = massive_sub_value + bigger_sub_value
+    gigantic_sub_dict[i] = massive_sub_value
+final_sorted_list = sorted(gigantic_sub_dict.items(), key=lambda x: x[1], reverse=True)
+print("I would like to keep ", end="")
+print(combo_dict[final_sorted_list[0][0]], end="")
+print(".")
