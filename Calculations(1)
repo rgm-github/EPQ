@@ -1,0 +1,207 @@
+# define functions
+
+def find_the_combinations(any_list, list_of_combinations):
+    for element in any_list:
+        for sub_set in list_of_combinations.copy():
+            new_sub_set = sub_set + [element]
+            list_of_combinations.append(new_sub_set)
+    return
+
+
+def delete_the_duplicates(any_list, list_without_duplicates):
+    for i in any_list:
+        if i not in list_without_duplicates:
+            list_without_duplicates.append(i)
+    return
+
+# define classes
+
+
+class Categories:
+    def __init__(self, number, mean):
+        self.number = number
+        self.mean = mean
+        if number != "Bonus":
+            self.score = "-"
+        else:
+            self.score = "No"
+        self.space = "       "
+
+    def scorecard_space(self):
+        if len(str(self.score)) > int(1):
+            self.space = "      "
+        if self.score != "-" and self.score != "No":
+            int(self.score)
+        return self.space
+
+    def find_the_score(self, any_list, status):
+        if self.number == 1 or self.number == 2 or self.number == 3 or self.number == 4 or self.number == 5 or self.number == 6:
+            the_score = any_list.count(self.number) * self.number
+        elif self.number == "Bonus":
+            upper_total = 0
+            if Aces.score.isdigit():
+                upper_total = upper_total + int(Aces.score)
+            if Twos.score.isdigit():
+                upper_total = upper_total + int(Twos.score)
+            if Threes.score.isdigit():
+                upper_total = upper_total + int(Threes.score)
+            if Fours.score.isdigit():
+                upper_total = upper_total + int(Fours.score)
+            if Fives.score.isdigit():
+                upper_total = upper_total + int(Fives.score)
+            if Sixes.score.isdigit():
+                upper_total = upper_total + int(Sixes.score)
+            if upper_total >= 36:
+                the_score = "Yes"
+            else:
+                the_score = "No"
+        elif self.number == "Three of a Kind":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element) >= 3 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                    repeat = False
+        elif self.number == "Four of a Kind":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) >= 4:
+                    for number in any_list:
+                        the_score = the_score + number
+        elif self.number == "Full House":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                for another_element in any_list:
+                    if any_list.count(element) == 2 and repeat:
+                        if any_list.count(another_element) == 3:
+                            for number in any_list:
+                                the_score = the_score + number
+                                repeat = False
+        elif self.number == "Small Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(
+                        element + 3) >= 1 and repeat:
+                    for number in any_list:
+                        the_score = the_score + number
+                        repeat = False
+        elif self.number == "Large Straight":
+            the_score = 0
+            repeat = True
+            for element in any_list:
+                if any_list.count(element + 1) >= 1 and any_list.count(element + 2) >= 1 and any_list.count(
+                        element + 3) >= 1 and any_list.count(element + 4) >= 1 and repeat:
+                    if any_list.count(element + 4) >= 1:
+                        for number in any_list:
+                            the_score = the_score + number
+                            repeat = False
+        elif self.number == "Yahtzee":
+            the_score = 0
+            for element in any_list:
+                if any_list.count(element) == 5:
+                    the_score = 50
+        elif self.number == "Chance":
+            the_score = 0
+            for element in any_list:
+                the_score = the_score + element
+        else:
+            print("Something went wrong.")
+            the_score = 0
+        if status == "set as score":
+            self.score = the_score
+            if self.number == 1:
+                print("You scored " + str(the_score) + " in Aces.")
+            elif self.number == 2:
+                print("You scored " + str(the_score) + " in Twos.")
+            elif self.number == 3:
+                print("You scored " + str(the_score) + " in Threes.")
+            elif self.number == 4:
+                print("You scored " + str(the_score) + " in Fours.")
+            elif self.number == 5:
+                print("You scored " + str(the_score) + " in Fives.")
+            elif self.number == 6:
+                print("You scored " + str(the_score) + " in Sixes.")
+            else:
+                print("You scored " + str(the_score) + " in " + str(self.number) + ".")
+        return the_score
+
+
+Aces, Twos, Threes = Categories(1, 99), Categories(2, 22), Categories(3, 5),
+Fours, Fives, Sixes = Categories(4, 9), Categories(5, 32), Categories(6, 2)
+Bonus, ThreeKind, FourKind = Categories("Bonus", "No"), Categories("Three of a Kind", 21), Categories("Four of a Kind",
+                                                                                                      87)
+FullHouse, SStraight, LStraight = Categories("Full House", 6), Categories("Small Straight", 22), Categories(
+    "Large Straight", 30)
+Yahtzee, Chance = Categories("Yahtzee", 0), Categories("Chance", 77)
+Player_Aces, Player_Twos, Player_Threes = Categories(1, 86), Categories(2, 43), Categories(3, 33)
+Player_Fours, Player_Fives, Player_Sixes = Categories(4, 3), Categories(5, 5), Categories(6, 4)
+Player_Bonus, Player_ThreeKind, Player_FourKind = Categories("Bonus", 92), Categories("Three of a Kind",
+                                                                                      88), Categories("Four of a Kind",
+                                                                                                      46)
+Player_Full_House, Player_SStraight = Categories("Full House", 7), Categories("Small Straight", 90)
+Player_LStraight, Player_Yahtzee, Player_Chance = Categories("Large Straight", 1), Categories("Yahtzee",
+                                                                                              50), Categories("Chance",
+                                                                                                              88)
+
+dice_list = [6, 5, 4, 1, 2]
+combo_list = [[]]
+
+# finds combinations
+find_the_combinations(dice_list, combo_list)
+# STEP ONE COMPLETE
+
+# deletes duplicates from list and deletes empty set
+roll_1_combinations = []
+delete_the_duplicates(combo_list, roll_1_combinations)
+
+numbers_list = [1, 2, 3, 4, 5, 6]
+list_possibilities = [[]]
+
+find_the_combinations(numbers_list, list_possibilities)
+
+available_list = []
+for each_list in roll_1_combinations:
+    available = 5 - len(each_list)
+    for every_list in list_possibilities:
+        if len(every_list) == available:
+            new_list = []
+            for each_number in every_list:
+                new_list.append(each_number)
+            for each_number in each_list:
+                new_list.append(each_number)
+            available_list.append(new_list)
+# STEP TWO COMPLETE
+
+combo_list2 = []
+for each_element in available_list:
+    combo_list = [[]]
+    find_the_combinations(each_element, combo_list)
+    for each_list in combo_list:
+        combo_list2.append(each_list)
+
+roll_2_combinations = []
+delete_the_duplicates(combo_list2, roll_2_combinations)
+# STEP THREE COMPLETE
+
+available_list_final = []
+for each_list in roll_2_combinations:
+    available = 5 - len(each_list)
+    for every_list in list_possibilities:
+        if len(every_list) == available:
+            new_list = []
+            for each_number in every_list:
+                new_list.append(each_number)
+            for each_number in each_list:
+                new_list.append(each_number)
+            available_list_final.append(new_list)
+# STEP FOUR COMPLETE
+
+aces_possible_scores = []
+
+for all_the_lists in available_list_final:
+    working_value = Aces.find_the_score(all_the_lists, "no set")
+    working_value = working_value + Aces.mean # etc.
+    aces_possible_scores.append(working_value)
