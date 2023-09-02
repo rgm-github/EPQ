@@ -1,0 +1,132 @@
+print("ROUND 1")
+name = input("What's your name?")
+mode = int(input("What mode?"))
+acescore = "-"
+twoscore = "-"
+threescore = "-"
+fourscore = "-"
+fivescore = "-"
+sixscore = "-"
+bonusstatus = "No"
+threeOAKscore = "-"
+fourOAKscore = "-"
+fullhousescore = "-"
+s_straightscore = "-"
+l_straightscore = "-"
+yahtzeestatus = "-"
+chancescore = "-"
+PLacescore = "-"
+PLtwoscore = "-"
+PLthreescore = "-"
+PLfourscore = "-"
+PLfivescore = "-"
+PLsixscore = "-"
+PLbonusstatus = "No"
+PLthreeOAKscore = "-"
+PLfourOAKscore = "-"
+PLfullhousescore = "-"
+PLs_straightscore = "-"
+PLl_straightscore = "-"
+PLyahtzeestatus = "-"
+PLchancescore = "-"
+def display_scorecards(name, acescore, twoscore, threescore, fourscore, fivescore, sixscore, bonusstatus, threeOAKscore, fourOAKscore, fullhousescore, s_straightscore, l_straightscore, yahtzeestatus, chancescore, PLacescore, PLtwoscore, PLthreescore, PLfourscore, PLfivescore, PLsixscore, PLbonusstatus, PLthreeOAKscore, PLfourOAKscore, PLfullhousescore, PLs_straightscore, PLl_straightscore, PLyahtzeestatus, PLchancescore):
+    acespace = " "
+    if len(acescore) > int(1):
+        acespace = ""
+    twospace = " "
+    if len(twoscore) > int(1):
+        twospace = ""
+    threespace = " "
+    if len(threescore) > int(1):
+        threespace = ""
+    fourspace = " "
+    if len(fourscore) > int(1):
+        fourspace = ""
+    fivespace = " "
+    if len(fivescore) > int(1):
+        fivespace = ""
+    sixspace = " "
+    if len(sixscore) > int(1):
+        sixspace = ""
+    bonusspace = " "
+    if len(bonusstatus) > int(2):
+        bonusspace = ""
+    threeOAKspace = " "
+    if len(threeOAKscore) > int(1):
+        threeOAKspace = ""
+    fourOAKspace = " "
+    if len(fourOAKscore) > int(1):
+        fourOAKspace = ""
+    fullhousespace = " "
+    if len(fullhousescore) > int(1):
+        fullhousespace = ""
+    s_straightspace = " "
+    if len(s_straightscore) > int(1):
+        s_straightspace = ""
+    l_straightspace = " "
+    if len(l_straightscore) > int(1):
+        l_straightspace = ""
+    yahtzeespace = " "
+    if len(yahtzeestatus) > int(1):
+        yahtzeespace = ""
+    chancespace = " "
+    if len(chancescore) > int(1):
+        chancespace = ""
+    computer_scorecard = (" Computer's scorecard"," __________________ _______________ ","|     CATEGORY     |     SCORE     |","|__________________|_______________|", "| Aces:            |       "+acescore+""+acespace+"      |","| Twos:            |       "+twoscore+""+twospace+"      |","| Threes:          |       "+threescore+""+threespace+"      |","| Fours:           |       "+fourscore+""+fourspace+"      |","| Fives:           |       "+fivescore+""+fivespace+"      |","| Sixes:           |       "+sixscore+""+sixspace+"      |","| Bonus?           |       "+bonusstatus+""+bonusspace+"     |","|__________________|_______________|","| Three of a Kind: |       "+threeOAKscore+""+threeOAKspace+"      |","| Four of a Kind:  |       "+fourOAKscore+""+fourOAKspace+"      |","| Full House:      |       "+fullhousescore+""+fullhousespace+"      |","| Small straight:  |       "+s_straightscore+""+s_straightspace+"      |","| Large Straight:  |       "+l_straightscore+""+l_straightspace+"      |","| Yahtzee:         |       "+yahtzeestatus+""+yahtzeespace+"      |","| Chance:          |       "+chancescore+""+chancespace+"      |","|__________________|_______________|")
+    if mode == int(2):
+        PLacespace = " "
+        if len(PLacescore) > int(1):
+            PLacespace = ""
+        PLtwospace = " "
+        if len(PLtwoscore) > int(1):
+            PLtwospace = ""
+        PLthreespace = " "
+        if len(PLthreescore) > int(1):
+            PLthreespace = ""
+        PLfourspace = " "
+        if len(PLfourscore) > int(1):
+            PLfourspace = ""
+        PLfivespace = " "
+        if len(PLfivescore) > int(1):
+            PLfivespace = ""
+        PLsixspace = " "
+        if len(PLsixscore) > int(1):
+            PLsixspace = ""
+        PLbonusspace = " "
+        if len(PLbonusstatus) > int(2):
+            PLbonusspace = ""
+        PLthreeOAKspace = " "
+        if len(PLthreeOAKscore) > int(1):
+            PLthreeOAKspace = ""
+        PLfourOAKspace = " "
+        if len(PLfourOAKscore) > int(1):
+            PLfourOAKspace = ""
+        PLfullhousespace = " "
+        if len(PLfullhousescore) > int(1):
+            PLfullhousespace = ""
+        PLs_straightspace = " "
+        if len(PLs_straightscore) > int(1):
+            PLs_straightspace = ""
+        PLl_straightspace = " "
+        if len(PLl_straightscore) > int(1):
+            PLl_straightspace = ""
+        PLyahtzeespace = " "
+        if len(PLyahtzeestatus) > int(1):
+            PLyahtzeespace = ""
+        PLchancespace = " "
+        if len(PLchancescore) > int(1):
+            PLchancespace = ""
+        player_scorecard = ("                "+name+"'s scorecard"," __________________ _______________ ","|     CATEGORY     |     SCORE     |","|__________________|_______________|", "| Aces:            |       "+PLacescore+""+PLacespace+"      |","| Twos:            |       "+PLtwoscore+""+PLtwospace+"      |","| Threes:          |       "+PLthreescore+""+PLthreespace+"      |","| Fours:           |       "+PLfourscore+""+PLfourspace+"      |","| Fives:           |       "+PLfivescore+""+PLfivespace+"      |","| Sixes:           |       "+PLsixscore+""+PLsixspace+"      |","| Bonus?           |       "+PLbonusstatus+""+PLbonusspace+"     |","|__________________|_______________|","| Three of a Kind: |       "+PLthreeOAKscore+""+PLthreeOAKspace+"      |","| Four of a Kind:  |       "+PLfourOAKscore+""+PLfourOAKspace+"      |","| Full House:      |       "+PLfullhousescore+""+PLfullhousespace+"      |","| Small straight:  |       "+PLs_straightscore+""+PLs_straightspace+"      |","| Large Straight:  |       "+PLl_straightscore+""+PLl_straightspace+"      |","| Yahtzee:         |       "+PLyahtzeestatus+""+PLyahtzeespace+"      |","| Chance:          |       "+PLchancescore+""+PLchancespace+"      |","|__________________|_______________|")
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add], player_scorecard[add])
+            add = add + 1
+    else:
+        length = len(computer_scorecard)
+        add = 0
+        for count in range(length):
+            print(computer_scorecard[add])
+            add = add + 1
+    return
+display_scorecards(name, acescore, twoscore, threescore, fourscore, fivescore, sixscore, bonusstatus, threeOAKscore, fourOAKscore, fullhousescore, s_straightscore, l_straightscore, yahtzeestatus, chancescore, PLacescore, PLtwoscore, PLthreescore, PLfourscore, PLfivescore, PLsixscore, PLbonusstatus, PLthreeOAKscore, PLfourOAKscore, PLfullhousescore, PLs_straightscore, PLl_straightscore, PLyahtzeestatus, PLchancescore)
