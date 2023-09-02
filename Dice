@@ -1,0 +1,142 @@
+import random
+
+dice_method = int(input("What is dice method?"))
+print("I will go first.")
+
+
+def roll_the_dice():
+    if turn_status == "computer":
+        if dice_method == int(1):
+            one2six = True
+            while one2six:
+                d1 = input("What is my first dice?")
+                while d1.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d1 = input ("What is my first dice?")
+                d1 = int(d1)
+                if 6 >= d1 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d2 = input("What is my second dice?")
+                while d2.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d2 = input ("What is my second dice?")
+                d2 = int(d2)
+                if 6 >= d2 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d3 = input("What is my third dice?")
+                while d3.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d3 = input ("What is my third dice?")
+                d3 = int(d3)
+                if 6 >= d3 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d4 = input("What is my fourth dice?")
+                while d4.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d4 = input ("What is my fourth dice?")
+                d4 = int(d4)
+                if 6 >= d4 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d5 = input("What is my fifth dice?")
+                while d5.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d5 = input ("What is my fifth dice?")
+                d5 = int(d5)
+                if 6 >= d5 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+        else:
+            d1 = random.randint(1, 6)
+            d2 = random.randint(1, 6)
+            d3 = random.randint(1, 6)
+            d4 = random.randint(1, 6)
+            d5 = random.randint(1, 6)
+        dice_list = (d1, d2, d3, d4, d5)
+        print("My dice are ", end="")
+        print(dice_list, end="")
+        print(".")
+    else:
+        if dice_method == int(1):
+            one2six = True
+            while one2six:
+                d1 = input("What is your first dice?")
+                while d1.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d1 = input ("What your my first dice?")
+                d1 = int(d1)
+                if 6 >= d1 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d2 = input("What your my second dice?")
+                while d2.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d2 = input ("What your my second dice?")
+                d2 = int(d2)
+                if 6 >= d2 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d3 = input("What your my third dice?")
+                while d3.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d3 = input ("What your my third dice?")
+                d3 = int(d3)
+                if 6 >= d3 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d4 = input("What your my fourth dice?")
+                while d4.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d4 = input ("What your my fourth dice?")
+                d4 = int(d4)
+                if 6 >= d4 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+            one2six = True
+            while one2six:
+                d5 = input("What is your fifth dice?")
+                while d5.isdigit() is False:
+                    print("You did not enter a valid number.")
+                    d5 = input ("What is your fifth dice?")
+                d5 = int(d5)
+                if 6 >= d5 >= 1:
+                    one2six = False
+                else:
+                    print("You did not enter a valid number.")
+        else:
+            d1 = random.randint(1, 6)
+            d2 = random.randint(1, 6)
+            d3 = random.randint(1, 6)
+            d4 = random.randint(1, 6)
+            d5 = random.randint(1, 6)
+        dice_list = (d1, d2, d3, d4, d5)
+        print("Your dice are ", end="")
+        print(dice_list, end="")
+        print(".")
+    return dice_list
