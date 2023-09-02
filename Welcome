@@ -1,0 +1,50 @@
+import time
+import random
+mode, method, number_of_games, dice_method, name = "empty", "empty", "empty", "empty", "empty"
+skip = True
+while mode != int(1) and mode != int(2) and mode != "classic settings" and mode != "demo":
+    mode = input("""What mode would you like?
+    1. Solo
+    2. Vs Player
+Enter the number: """)
+    if mode.isdigit():
+        mode = int(mode)
+    if mode == int(1):
+        while method != int(1) and method != int(2):
+            method = input("""Would you like:
+    1. Slow Walkthrough
+    2. End scores
+Enter the number: """)
+            if method.isdigit():
+                method = int(method)
+            if method == int(2):
+                while number_of_games.isdigit() is False:
+                    number_of_games = input("How many end scores would you like? ")
+                    if number_of_games.isdigit() is False:
+                        print("You did not enter a valid number.")
+                number_of_games = int(number_of_games)
+            elif method != int(1) and method != int(2):
+                print("You did not enter a valid number.")
+    elif mode == int(2) or mode == "classic settings":
+        name = input("What is the player name? ")
+        if mode == "classic settings":
+            skip = False
+            mode = int(2)
+            dice_method = int(2)
+    elif mode == "demo":
+        skip = False
+        mode = int(1)
+        method = int(1)
+        dice_method = int(1)
+    else:
+        print("You did not enter a valid number.")
+while dice_method != int(1) and dice_method != int(2) and skip:
+    dice_method = input("""Who will roll the dice?
+    1. Input the dice
+    2. Generate random dice
+Enter the number: """)
+    if dice_method.isdigit():
+        dice_method = int(dice_method)
+    if dice_method != int(1) and dice_method != int(2):
+        print("You did not enter a valid number.")
+print("OK. Let's play Yahtzee!")
